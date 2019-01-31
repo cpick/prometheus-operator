@@ -15,6 +15,21 @@ deployKubeScheduler: False
 deployKubeControllerManager: False
 ```
 
+For GKE <1.11 HTTPS must be disabled:
+
+```
+exporter-kubelets:
+  https: false
+```
+
+For GKE >=1.11 HTTPS must be disabled and cAdvisor metrics must be fetched from the same port as other metrics:
+
+```
+exporter-kubelets:
+  https: false
+  httpSeparateCadvisor: false
+```
+
 Then install your custom values (for example):
 
 ```

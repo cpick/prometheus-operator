@@ -1,6 +1,9 @@
 # Set to false for GKE
 https: true
 
+# Set to false for GKE >= 1.11
+httpSeparateCadvisor: true
+
 insecureSkipVerify: true
 
 # default rules are in templates/kubelet.rules.yaml

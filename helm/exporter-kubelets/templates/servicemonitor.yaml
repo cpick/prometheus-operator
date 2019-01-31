@@ -42,10 +42,17 @@ spec:
       insecureSkipVerify: true
       {{- end }}
     bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-  {{- else }}
+  {{- else if .Values.httpSeparateCadvisor }}
   - port: http-metrics
     interval: 15s
   - port: cadvisor
+    interval: 30s
+    honorLabels: true
+  {{- else }}
+  - port: http-metrics
+    interval: 15s
+  - port: http-metrics
+    path: /metrics/cadvisor
     interval: 30s
     honorLabels: true
   {{- end }}
